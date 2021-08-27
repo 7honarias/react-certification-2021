@@ -11,20 +11,3 @@ export const Homepage = styled.section`
     font-family: 'Roboto', 'Helvetica';
   }
 `;
-
-export const InputSearch = styled.input`
-  color: white;
-  border-radius: 4px;
-  border: 0;
-  height: 1.1876em;
-  margin: 0;
-  display: block;
-  padding: 10px 7px 8px 48px;
-  min-width: 0;
-  background: none;
-  box-sizing: content-box;
-  &:focus {
-    border: 0;
-    outline: none;
-  }
-`;

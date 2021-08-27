@@ -1,17 +1,19 @@
 import axios from 'axios';
 
-const youtubeClient = axios.create({
+export const youtubeClient = axios.create({
   baseURL: 'https://www.googleapis.com/youtube/v3/',
   params: {
     part: 'snippet',
-    key: process.env.REACT_APP_API_KEY,
+    maxResults: 12,
+    key: 'AIzaSyAYqG4dkr8FeUIXfKTTqqrroxJo0tQENGM',
   },
 });
 
-export const fetchVideos = (searchQuery) => {
+// process.env.REACT_APP_API_KEY
+export const searchVideos = async (searchQuery) => {
   try {
     const result = youtubeClient.get('/search', {
-      params: { q: searchQuery, type: 'video', maxResults: 10 },
+      params: { q: searchQuery, type: 'video' },
     });
     return result;
   } catch (error) {
@@ -41,3 +43,5 @@ export const getRelationVideoList = (videoId) => {
     return null;
   }
 };
+
+//AIzaSyAYqG4dkr8FeUIXfKTTqqrroxJo0tQENGM

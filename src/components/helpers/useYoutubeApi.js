@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchVideos, getVideo, getRelationVideoList } from './helper';
+import { searchVideos, getVideo, getRelationVideoList } from './helper';
 
 const useYoutubeApi = () => {
   const [data, setData] = useState([]);
@@ -11,7 +11,7 @@ const useYoutubeApi = () => {
   const fetchSearch = async (query) => {
     setLoading(true);
     try {
-      const resp = await fetchVideos(query);
+      const resp = await searchVideos(query);
       setData(resp.data.items);
     } catch (err) {
       setError(err);

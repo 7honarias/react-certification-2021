@@ -5,7 +5,7 @@ export const Container = styled.header`
   width: 100%;
   height: 64px;
   display: flex;
-  background-color: #1c5476;
+  background-color: ${(props) => props.theme['background-header']};
   justify-content: space-between;
   align-items: center;
 `;

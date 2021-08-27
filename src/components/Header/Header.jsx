@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Switch from '@material-ui/core/Switch';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { AppContext } from '../../providers/App/App.provider';
+import { primary, dark } from '../../style/theme';
 import {
   Container,
   LeftHeader,
@@ -9,20 +14,23 @@ import {
   SearchDiv,
   DivSearchIcon,
   DivInput,
-  SwitchBtn,
-  IconButton,
-  LabelIconButton,
-  Input,
-  Thumb,
-  TouchRipple,
-  TrackSwitch,
   ButtonAccount,
   DivAvatar,
 } from './Header.styled';
 
 function Header({ children, enterPressed }) {
+  const [checked, setChecked] = useState(false);
+  const { state, dispatch } = useContext(AppContext);
+  const toggleChecked = () => {
+    setChecked((prev) => !prev);
+    if (checked) {
+      dispatch({ type: 'SET_THEME', payload: { theme: primary } });
+    } else {
+      dispatch({ type: 'SET_THEME', payload: { theme: dark } });
+    }
+  };
   return (
-    <Container>
+    <Container theme={state.theme}>
       <LeftHeader>
         <MenuIcon />
         <SearchDiv type="submit" onSubmit={enterPressed}>
@@ -36,17 +44,12 @@ function Header({ children, enterPressed }) {
       </LeftHeader>
       <RightHeader>
         <div>
-          <SwitchBtn>
-            <IconButton>
-              <LabelIconButton>
-                <Input name="search" type="checkbox" />
-                <Thumb />
-              </LabelIconButton>
-              <TouchRipple />
-            </IconButton>
-            <TrackSwitch />
-          </SwitchBtn>
-          <span>Dark mode</span>
+          <FormGroup>
+            <FormControlLabel
+              control={<Switch checked={checked} onChange={toggleChecked} />}
+              label="Dark Mode"
+            />
+          </FormGroup>
         </div>
         <ButtonAccount>
           <DivAvatar>

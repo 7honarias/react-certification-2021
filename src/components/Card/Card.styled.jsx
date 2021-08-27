@@ -9,7 +9,8 @@ export const Container = styled.div`
     0px 1px 3px 0px rgb(0 0 0 / 12%);
   border-radius: 4px;
   overflow: hidden;
-  background-color: #fff;
+  background-color: ${(props) => props.theme['background-card']};
+  color: ${(props) => props.theme['text-color']};
 `;
 
 export const LinkCard = styled(Link)`

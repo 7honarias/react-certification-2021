@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../providers/App/App.provider';
 import {
   Container,
   ButtonCard,
@@ -11,10 +12,11 @@ import {
 
 function Card(props) {
   const { image, title, description, videoId } = props;
+  const { state } = useContext(AppContext);
   console.log(videoId);
   return (
     <LinkCard to={`/view/${videoId}`}>
-      <Container>
+      <Container theme={state.theme}>
         <ButtonCard>
           <ImageCard image={image} />
         </ButtonCard>

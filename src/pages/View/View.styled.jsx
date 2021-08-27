@@ -43,6 +43,7 @@ export const MainContent = styled.div`
 
 export const SideSection = styled.div`
   margin-left: 8px;
+  width: 60%;
 `;
 
 export const SideVideo = styled.div`
