@@ -13,7 +13,7 @@ import {
 function Card(props) {
   const { image, title, description, videoId } = props;
   const { state } = useContext(AppContext);
-  console.log(videoId);
+  // console.log(videoId);
   return (
     <LinkCard to={`/view/${videoId}`}>
       <Container theme={state.theme}>

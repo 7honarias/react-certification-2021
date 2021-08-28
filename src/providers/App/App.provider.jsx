@@ -1,9 +1,9 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useEffect } from 'react';
 import { searchVideos } from '../../components/helpers/helper';
 import { primary } from '../../style/theme';
 
 const initialState = {
-  query: 'wizeline',
+  query: '',
   videos: [],
   theme: primary,
 };
@@ -30,7 +30,6 @@ export const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
-
   const fetchVideos = async (searchQuery) => {
     try {
       const result = await searchVideos(searchQuery);
@@ -39,6 +38,10 @@ const AppProvider = ({ children }) => {
       console.log('here', error);
     }
   };
+  useEffect(() => {
+    fetchVideos(state.query);
+    console.log(state.query);
+  }, [state.query]);
   return (
     <AppContext.Provider
       value={{

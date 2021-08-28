@@ -1,30 +1,22 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../Header';
 import { AppContext } from '../../providers/App/App.provider';
 import { Container, InputSearch } from './Layout.styled';
 
 function Layout({ children }) {
-  const { state, dispatch, fetchVideos } = useContext(AppContext);
-  const [value, setValue] = useState('wizeline');
+  const { state, dispatch } = useContext(AppContext);
+  const [currentQuery, setCurrentQuery] = useState('Wezilne');
   const history = useHistory();
-
-  useEffect(() => {
-    if (state.videos.length === 0) {
-      fetchVideos(state.query);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const enterPressed = async (event) => {
     event.preventDefault();
-    dispatch({ type: 'SET_SEARCH_QUERY', payload: { query: value } });
-    fetchVideos(value);
+    dispatch({ type: 'SET_SEARCH_QUERY', payload: { query: currentQuery } });
     history.push('/');
   };
 
   const handleChange = (event) => {
-    setValue(() => event.target.value);
+    setCurrentQuery(() => event.target.value);
   };
 
   return (
@@ -33,7 +25,7 @@ function Layout({ children }) {
         <InputSearch
           placeholder="Search..."
           type="text"
-          value={value}
+          value={currentQuery}
           onChange={handleChange}
         />
       </Header>

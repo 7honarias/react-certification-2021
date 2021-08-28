@@ -5,11 +5,10 @@ export const youtubeClient = axios.create({
   params: {
     part: 'snippet',
     maxResults: 12,
-    key: 'AIzaSyAYqG4dkr8FeUIXfKTTqqrroxJo0tQENGM',
+    key: process.env.REACT_APP_API_KEY,
   },
 });
 
-// process.env.REACT_APP_API_KEY
 export const searchVideos = async (searchQuery) => {
   try {
     const result = youtubeClient.get('/search', {
