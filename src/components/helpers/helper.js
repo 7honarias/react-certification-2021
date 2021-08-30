@@ -5,8 +5,7 @@ export const youtubeClient = axios.create({
   params: {
     part: 'snippet',
     maxResults: 12,
-    key: 'AIzaSyAYqG4dkr8FeUIXfKTTqqrroxJo0tQENGM',
-    //key: process.env.REACT_APP_API_KEY,
+    key: process.env.REACT_APP_API_KEY,
   },
 });
 
