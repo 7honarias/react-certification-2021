@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
+import LeftNav from '../LeftNav';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import CloseIcon from '@material-ui/icons/Close';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -21,6 +23,7 @@ import {
 function Header({ children, enterPressed }) {
   const [checked, setChecked] = useState(false);
   const { state, dispatch } = useContext(AppContext);
+  const [open, setOpen] = useState(false);
   const toggleChecked = () => {
     setChecked((prev) => !prev);
     if (checked) {
@@ -29,10 +32,15 @@ function Header({ children, enterPressed }) {
       dispatch({ type: 'SET_THEME', payload: { theme: dark } });
     }
   };
+
+  const burgerMenu = () => {
+    setOpen(!open);
+  };
   return (
     <Container theme={state.theme}>
       <LeftHeader>
-        <MenuIcon />
+        {open ? <CloseIcon onClick={burgerMenu} /> : <MenuIcon onClick={burgerMenu} />}
+        <LeftNav open={open} />
         <SearchDiv type="submit" onSubmit={enterPressed}>
           <DivInput>
             <DivSearchIcon>

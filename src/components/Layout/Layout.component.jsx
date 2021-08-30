@@ -6,7 +6,7 @@ import { Container, InputSearch } from './Layout.styled';
 
 function Layout({ children }) {
   const { state, dispatch } = useContext(AppContext);
-  const [currentQuery, setCurrentQuery] = useState('Wezilne');
+  const [currentQuery, setCurrentQuery] = useState('');
   const history = useHistory();
 
   const enterPressed = async (event) => {
