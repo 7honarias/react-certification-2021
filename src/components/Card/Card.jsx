@@ -12,20 +12,23 @@ import {
 
 function Card(props) {
   const { image, title, description, videoId } = props;
-  const { state } = useContext(AppContext);
+  const { state, addToFavorites } = useContext(AppContext);
   // console.log(videoId);
   return (
-    <LinkCard to={`/view/${videoId}`}>
-      <Container theme={state.theme}>
-        <ButtonCard>
+    <Container theme={state.theme}>
+      <ButtonCard>
+        <LinkCard to={`/view/${videoId}`}>
           <ImageCard image={image} />
-        </ButtonCard>
+        </LinkCard>
+        <button onClick={addToFavorites(videoId)}>fav</button>
+      </ButtonCard>
+      <LinkCard to={`/view/${videoId}`}>
         <CardContent>
           <TitleVideo>{title}</TitleVideo>
           <CardBody>{description}</CardBody>
         </CardContent>
-      </Container>
-    </LinkCard>
+      </LinkCard>
+    </Container>
   );
 }
 
