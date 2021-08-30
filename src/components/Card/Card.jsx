@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../providers/App/App.provider';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import {
   Container,
   ButtonCard,
@@ -11,8 +12,8 @@ import {
 } from './Card.styled';
 
 function Card(props) {
-  const { image, title, description, videoId } = props;
-  const { state, addToFavorites } = useContext(AppContext);
+  const { image, title, description, videoId, favorite } = props;
+  const { state } = useContext(AppContext);
   // console.log(videoId);
   return (
     <Container theme={state.theme}>
@@ -20,7 +21,7 @@ function Card(props) {
         <LinkCard to={`/view/${videoId}`}>
           <ImageCard image={image} />
         </LinkCard>
-        <button onClick={addToFavorites(videoId)}>fav</button>
+        <FavoriteIcon onClick={favorite} />
       </ButtonCard>
       <LinkCard to={`/view/${videoId}`}>
         <CardContent>
